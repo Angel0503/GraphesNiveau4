@@ -8,7 +8,8 @@ Created on Mon Feb 28 16:25:11 2022
 def extract_min(lst):
     min = lst[0]
     sommet = 0
-    for i in (1,range(lst)):
+    for i in range(1,len(lst)):
+        print(f"{lst[i]}, {i}")
         if lst[i] < min:
             min = lst[i]
             sommet = i
@@ -21,7 +22,7 @@ poids=[
  [5,5,10,float('inf')]
  ]
 
-print(poids)
+#print(poids)
 
 
 """
@@ -33,6 +34,26 @@ def djikstra(poids, s):
     pred = []
     aTraiter = []
     
+    som = s
+
+    """Initialiser les variables"""
+    for i in range(len(poids)):
+        dist.append([])
+        pred.append([])
+        if i != som:
+            aTraiter.append(i)
+        for j in range(len(poids)):
+            if i != j and poids[i][j] != float('inf'):
+                pred[i].append(j)
+            else :
+                pred[i].append(float('inf'))
     
+    """Traitement"""
+    #while(aTraiter != []):
+    return dist
+        
+                
+    
+#print(djikstra(poids, 0))
     
     
