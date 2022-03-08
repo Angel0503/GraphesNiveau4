@@ -4,17 +4,6 @@ Created on Mon Feb 28 16:25:11 2022
 
 @author: angel
 """
-
-def extract_min(lst):
-    min = lst[0]
-    sommet = 0
-    for i in range(1,len(lst)):
-        print(f"{lst[i]}, {i}")
-        if lst[i] < min:
-            min = lst[i]
-            sommet = i
-    return sommet
-
 poids=[
  [float('inf'),2,6,3],
  [2,float('inf'),8,5],
@@ -22,7 +11,21 @@ poids=[
  [5,5,10,float('inf')]
  ]
 
-#print(poids)
+def extract_min(lst):
+    min = lst[0]
+    sommet = 0
+    for i in range(1,len(lst)):
+        if lst[i] < min:
+            min = lst[i]
+            sommet = i
+    return sommet
+
+def succ(lst):
+    success=[]
+    for i in range(len(lst)):
+        if lst[i] != float('inf'):
+            success.append(i)
+    return success
 
 
 """
@@ -38,22 +41,38 @@ def djikstra(poids, s):
 
     """Initialiser les variables"""
     for i in range(len(poids)):
-        dist.append([])
-        pred.append([])
         if i != som:
             aTraiter.append(i)
-        for j in range(len(poids)):
-            if i != j and poids[i][j] != float('inf'):
-                pred[i].append(j)
-            else :
-                pred[i].append(float('inf'))
+        if i == s:
+            dist.append(None)
+            pred.append(None)
+        else :
+            dist.append('Null')
+            pred.append('Null')
+    print(dist)  
     
     """Traitement"""
-    #while(aTraiter != []):
-    return dist
+    for i in range(len(poids)):
+        successeur = succ(poids[i])
+        for val in successeur:
+            if val in aTraiter:
+                dist[val] = poids[val][extract_min(poids[val])]
+        if i == 2:                
+            aTraiter.pop(1)
+        print(dist)
+                
+        
+        
+        
+        
+        
+        
+       
+        
+    
         
                 
     
-#print(djikstra(poids, 0))
+print(djikstra(poids, 0))
     
     
